@@ -1,0 +1,8 @@
+Flask
+requests
+groq
+speechrecognition
+edge-tts
+asyncio
+python-dotenv
+pydub
