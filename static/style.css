@@ -1,0 +1,405 @@
+/* --- Base & Variables --- */
+
+:root {
+    --bg-color: #f0f4f8; /* Light blue-grey background */
+    --container-bg: #ffffff;
+    --header-bg: #e2e8f0; /* Slightly darker header */
+    --input-bg: #f8fafc; /* Very light input area */
+    --user-msg-bg: #cffafe; /* Light cyan */
+    --assistant-msg-bg: #f1f5f9; /* Light grey */
+    --primary-color: #0ea5e9; /* Sky blue */
+    --primary-hover: #0284c7;
+    --text-dark: #1e293b;
+    --text-light: #475569;
+    --border-color: #cbd5e1;
+    --shadow-color: rgba(100, 116, 139, 0.2);
+    --error-color: #ef4444;
+    --success-color: #22c55e;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+    color: var(--text-dark);
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif; /* Add this to allow vertical centering */
+}
+
+/* ... (your existing CSS) ... */
+
+.intro-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(123, 31, 162, 0.7), rgba(33, 150, 243, 0.7));
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    flex-grow: 1; /* Allow intro section to grow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+
+.intro-section p {
+    margin: 20px 0; /* Add some space around paragraphs */
+}
+
+.intro-text {
+    font-size: 2em;
+    font-weight: 800; /* Extra bold */
+    text-transform: uppercase;
+    color: white; /* Clean white color */
+    text-shadow: 0 0 8px rgba(220, 220, 220, 0.5); /* Dim white shadow */
+    margin-bottom: 20px;
+    font-family: 'Nunito', sans-serif; /* Rounded, bold font */
+}
+
+.intro-desc {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 1.12em;
+    line-height: 1.7;
+    color: #f0f0f0; /* Lighter grey */
+    font-weight: 500; /* Medium weight */
+}
+
+.intro-section button {
+    display: inline-block; /* Match btn display */
+    padding: 0.5rem 1.7rem; /* Match btn padding */
+    background-color: rgb(210, 86, 245); /* Match btn background */
+    border-radius: 1rem; /* Match btn border-radius */
+    font-size: 1rem; /* Match btn font-size */
+    color: rgb(255, 255, 255); /* Match btn color */
+    letter-spacing: 0.3rem; /* Match btn letter-spacing */
+    font-weight: 600; /* Match btn font-weight */
+    border: 1px solid rgb(183, 255, 0); /* Match btn border */
+    transition: 0.3s ease; /* Match btn transition */
+    cursor: pointer; /* Match btn cursor */
+    margin-top: 5px;
+    align-self: center;
+}
+
+.intro-section button:hover {
+    transform: scale(1.03); /* Match btn hover transform */
+    background-color: rgb(0, 110, 255); /* Match btn hover background */
+    color: black; /* Match btn hover color */
+    box-shadow: 0 0 25px rgb(0, 174, 255); /* Match btn hover box-shadow */
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+.intro-controls {
+    background-color: rgba(255, 255, 255, 0.1); /* Light background */
+    border-radius: 8px;
+    padding: 1px;
+    margin: 20px auto;
+    max-width: 80%;
+}
+
+.intro-controls p {
+    margin: 8px 0;
+    font-size: 0.8em;
+    color: #f0f0f0;
+}
+
+.intro-controls strong {
+    font-weight: 600;
+}
+
+
+/* --- Chat Container --- */
+.chat-container {
+    width: 100%;
+    max-width: 700px;
+    height: 85vh;
+    max-height: 800px;
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding: 20px; /* Add padding to chat container */
+}
+
+/* --- Header --- */
+.chat-header {
+    background-color: var(--header-bg);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap; /* Allow controls to wrap on small screens */
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.chat-header h1 {
+    font-size: 1.25em;
+    color: var(--text-dark);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-header .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.control-group label {
+    font-size: 0.9em;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.control-group i {
+    color: var(--primary-color);
+}
+
+.control-group select {
+    padding: 5px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--container-bg);
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+/* --- Chat History --- */
+.chat-history {
+    flex-grow: 1; /* Takes available space */
+    overflow-y: auto; /* Enables scrolling */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--container-bg); /* Or slightly off-white */
+}
+
+/* Custom Scrollbar */
+.chat-history::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-history::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.chat-history::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+.chat-history::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* --- Messages --- */
+.message {
+    padding: 10px 15px;
+    border-radius: 18px; /* Bubble effect */
+    max-width: 80%; /* Prevent messages from taking full width */
+    line-height: 1.5;
+    font-size: 0.95em;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    /* Animation */
+    /* opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInSlideUp 0.4s ease-out forwards; */
+}
+
+.user-message {
+    background-color: var(--user-msg-bg);
+    color: var(--text-dark);
+    border-bottom-right-radius: 5px; /* Flat edge */
+    align-self: flex-end; /* Align to the right */
+    margin-left: auto; /* Push to right */
+}
+
+.assistant-message {
+    background-color: var(--assistant-msg-bg);
+    color: var(--text-dark);
+    border-bottom-left-radius: 5px; /* Flat edge */
+    align-self: flex-start; /* Align to the left */
+    margin-right: auto; /* Push to left */
+}
+
+/* --- Input Area --- */
+.input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    align-items: center;
+    gap: 10px;
+}
+
+#user-input {
+    flex-grow: 1; /* Takes available space */
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px; /* Pill shape */
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#user-input:focus {
+    border-color: var(--primary-color);
+}
+
+.control-button {
+    padding: 10px;
+    border: none;
+    border-radius: 50%; /* Circle */
+    width: 44px;
+    height: 44px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-button:hover {
+    background-color: var(--primary-hover);
+}
+
+.control-button:active {
+    transform: scale(0.95);
+}
+
+.voice-button.recording {
+    background-color: var(--error-color); /* Red when recording */
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.copyright-notice {
+    font-size: 0.8em;
+    color: #aaa; /* Light grey */
+    text-align: center;
+    margin-top: 20px;
+     /* Add padding for spacing */
+}
+
+/* ... (rest of your CSS) ... */
+
+/* Mobile view adjustments */
+@media (max-width: 600px) {
+    .copyright-notice {
+        padding: 5px; /* Adjust padding for mobile */
+        margin-top: 10px; /* Adjust margin for mobile */
+    }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 600px) {
+    body {
+        padding: 0; /* Remove body padding */
+        align-items: flex-start; /* Align container to top */
+    }
+
+    .chat-container {
+        height: 100vh; /* Full height */
+        max-height: none;
+        border-radius: 0; /* Remove border radius */
+        max-width: 100%;
+        box-shadow: none;
+    }
+
+    .chat-header {
+        padding: 10px 15px;
+    }
+    .chat-header h1 {
+        font-size: 1.1em;
+    }
+    .control-group label {
+        font-size: 0.8em;
+    }
+     .control-group select {
+        font-size: 0.8em;
+        padding: 4px 6px;
+    }
+
+    .chat-history {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .message {
+        max-width: 85%;
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    .input-area {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    #user-input {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+
+    .control-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+     .status-indicator {
+        padding: 6px 15px;
+        font-size: 0.8em;
+        text-align: center;
+    }
+}
+
+.clear-chat {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px auto;
+    display: block;
+}
+
+.clear-chat:hover {
+    background-color: #e0e0e0;
+}
+
+.status-indicator {
+    padding: 6px 15px;
+    font-size: 0.8em;
+    text-align: center;
+}
+/* Initial state for UI elements based on mode */
+#record-button {
+    display: none; /* Hide record button initially */
+}
