@@ -1,8 +1,10 @@
 Flask
 requests
 groq
+python-dotenv
 speechrecognition
 edge-tts
 asyncio
-python-dotenv
 pydub
+ffmpeg
+gunicorn
