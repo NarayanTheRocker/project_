@@ -400,4 +400,4 @@ if __name__ == '__main__':
     print("Ensure 'memory.json' exists (or will be created).")
     print("Ensure .env file is present with API keys (GROQ_API_KEY, TMDB_API_KEY).")
     # Use debug=False for production
-    app.run(debug=True, host='0.0.0.0', port=5000) # Accessible on network
+    app.run(host="0.0.0.0", port=5000, debug=True) # Accessible on network
